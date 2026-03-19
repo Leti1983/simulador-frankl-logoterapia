@@ -26,7 +26,7 @@ Tus reglas:
 # 4. Configuración del Modelo de IA
 # Usamos 'gemini-1.5-flash', que es rápido y tiene un nivel gratuito excelente
 model = genai.GenerativeModel(
-    model_name="gemini-1.5-flash",
+    model_name="models/gemini-1.5-flash",
     system_instruction=frankl_prompt
 )
 
