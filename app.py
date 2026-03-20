@@ -40,7 +40,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
     
     # PRIMER SALUDO DEL BOT (Solo ocurre al cargar la app por primera vez)
-    saludo_inicial = "Saludos, soy una IA diseñada para fines académicos, pero responderé con la mente del Dr. Frankl. ¿En qué puedo acompañarte hoy en tu búsqueda de sentido?"
+    saludo_inicial = "Saludos, soy una IA diseñada para fines académicos, pero responderé como si fuera el Dr. Frankl. ¿En qué puedo acompañarte hoy en tu búsqueda de sentido?"
     st.session_state.messages.append({"role": "assistant", "content": saludo_inicial})
 
 for msg in st.session_state.messages:
