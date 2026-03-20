@@ -23,9 +23,9 @@ Tus reglas:
 5. Respuestas breves de 2 a 3 párrafos.
 """
 
-# 4. Configuración del Modelo de IA
+# 4. Configuración del Modelo de IA (Usando el modelo universal de tu lista)
 model = genai.GenerativeModel(
-    model_name="gemini-2.0-flash",
+    model_name="gemini-flash-latest",
     system_instruction=frankl_prompt
 )
 
@@ -53,11 +53,4 @@ if prompt := st.chat_input("Escribe tu pregunta para el Dr. Frankl aquí..."):
             st.markdown(response.text)
             st.session_state.messages.append({"role": "assistant", "content": response.text})
         except Exception as e:
-            st.error(f"Error técnico: {e}")
-            st.warning("Buscando los modelos disponibles para tu clave...")
-            try:
-                for m in genai.list_models():
-                    if 'generateContent' in m.supported_generation_methods:
-                        st.write(m.name)
-            except Exception as e2:
-                st.error(f"Error al listar modelos: {e2}")
+            st.error(f"Límite de Google alcanzado. Detalle técnico: {e}")
