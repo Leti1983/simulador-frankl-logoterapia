@@ -23,9 +23,9 @@ Tus reglas:
 5. Respuestas breves de 2 a 3 párrafos.
 """
 
-# 4. Configuración del Modelo de IA (Versión Flash oficial y estable)
+# 4. Configuración del Modelo de IA
 model = genai.GenerativeModel(
-    model_name="gemini-1.5-flash",
+    model_name="gemini-2.0-flash",
     system_instruction=frankl_prompt
 )
 
