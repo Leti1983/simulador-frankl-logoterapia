@@ -52,9 +52,9 @@ if prompt := st.chat_input("Escribe tu pregunta para el Dr. Frankl aquí..."):
             response = st.session_state.chat_session.send_message(prompt)
             st.markdown(response.text)
             st.session_state.messages.append({"role": "assistant", "content": response.text})
-      except Exception as e:
+        except Exception as e:
             st.error(f"Error técnico: {e}")
-            st.warning("Buscando los modelos que Google autoriza para tu clave...")
+            st.warning("Buscando los modelos disponibles para tu clave...")
             try:
                 for m in genai.list_models():
                     if 'generateContent' in m.supported_generation_methods:
