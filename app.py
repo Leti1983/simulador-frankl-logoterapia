@@ -53,4 +53,4 @@ if prompt := st.chat_input("Escribe tu pregunta para el Dr. Frankl aquí..."):
             st.markdown(response.text)
             st.session_state.messages.append({"role": "assistant", "content": response.text})
         except Exception as e:
-            st.error("El Dr. Frankl está reflexionando en silencio. Por favor, intenta hacer tu pregunta nuevamente en unos segundos.")
+          st.error(f"Error técnico: {e}")
