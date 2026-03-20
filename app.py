@@ -57,14 +57,24 @@ for msg in st.session_state.messages:
 # 6. Interacción con el alumno
 if prompt := st.chat_input("Escribe tu pregunta para el Dr. Frankl aquí..."):
     
+    # Mostrar mensaje del usuario
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
         
+    # Respuesta del asistente con efecto "Escribiendo..."
     with st.chat_message("assistant", avatar=AVATAR_FRANKL):
         try:
-            response = st.session_state.chat_session.send_message(prompt)
+            # Esta línea crea el efecto visual de WhatsApp
+            with st.status("El Dr. Frankl está escribiendo...", expanded=False) as status:
+                response = st.session_state.chat_session.send_message(prompt)
+                status.update(label="Respuesta recibida", state="complete", expanded=False)
+            
+            # Mostrar la respuesta final
             st.markdown(response.text)
             st.session_state.messages.append({"role": "assistant", "content": response.text})
+            
+        except Exception as e:
+            st.error(f"Error técnico: {e}")
         except Exception as e:
             st.error(f"Límite de Google alcanzado. Detalle técnico: {e}")
