@@ -31,7 +31,7 @@ model = genai.GenerativeModel(
 
 # 5. Inicialización de la memoria del chat
 # URL de la foto de perfil de Viktor Frankl
-AVATAR_FRANKL = "https://imgur.com/HJo4QeX"
+AVATAR_FRANKL = "https://i.imgur.com/HJo4QeX.jpeg"
 if "chat_session" not in st.session_state:
     st.session_state.chat_session = model.start_chat(history=[])
 
