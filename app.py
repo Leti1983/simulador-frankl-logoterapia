@@ -25,7 +25,7 @@ Tus reglas:
 
 # 4. Configuración del Modelo de IA (Usando el modelo universal de tu lista)
 model = genai.GenerativeModel(
-    model_name="models/gemini-1.5-flash-latest",
+    model_name="models/gemini-1.5-flash",
     system_instruction=frankl_prompt
 )
 
