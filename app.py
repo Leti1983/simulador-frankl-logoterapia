@@ -39,7 +39,13 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
+   for msg in st.session_state.messages:
+    if msg["role"] == "assistant":
+        with st.chat_message("assistant", avatar=AVATAR_FRANKL):
+            st.markdown(msg["content"])
+    else:
+        with st.chat_message("user"):
+            st.markdown(msg["content"])
         st.markdown(msg["content"])
 
 # 6. Interacción con el alumno
@@ -49,7 +55,7 @@ if prompt := st.chat_input("Escribe tu pregunta para el Dr. Frankl aquí..."):
     with st.chat_message("user"):
         st.markdown(prompt)
         
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar=AVATAR_FRANKL):
         try:
             response = st.session_state.chat_session.send_message(prompt)
             st.markdown(response.text)
