@@ -2,7 +2,11 @@ import streamlit as st
 import google.generativeai as genai
 
 # 1. Configuración del entorno
-st.set_page_config(page_title="Simulador: Viktor Frankl", page_icon="📖")
+# Logo centrado
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.image("https://i.imgur.com/txW5p7d.png", width=200)
+
 st.title("Conversaciones sobre el Sentido")
 st.write("Bienvenido a este espacio de reflexión académica de la Diplomatura en Logoterapia.")
 
