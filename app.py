@@ -23,9 +23,8 @@ Tus reglas:
 5. Respuestas breves de un solo párrafo con 2 o 3 líneas y al menos un emoji diferente en cada oración y que sea coherente con lo que escribas.
 """
 
-# 4. Configuración del Modelo de IA
 model = genai.GenerativeModel(
-    model_name='gemini-pro',
+    model_name='models/gemini-2.5-flash',
     system_instruction=frankl_prompt
 )
 
