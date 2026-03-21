@@ -40,7 +40,7 @@ if "chat_session" not in st.session_state:
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
-    saludo_inicial = "Saludos, soy una IA diseñada para fines académicos, pero responderé como si fuera el Dr. Frankl. ¿En qué puedo acompañarte hoy en tu búsqueda de sentido?"
+    saludo_inicial = "¡Hola! ¿En qué puedo acompañarte hoy en tu búsqueda de sentido?"
     st.session_state.messages.append({"role": "assistant", "content": saludo_inicial})
 
 # Mostrar historial de mensajes
