@@ -69,3 +69,12 @@ if prompt := st.chat_input("Escribe tu pregunta para el Dr. Frankl aquí..."):
             
         except Exception as e:
             st.error(f"Error técnico: {e}")
+
+# DIAGNÓSTICO TEMPORAL - Borrar después
+try:
+    available_models = genai.list_models()
+    st.write("### Modelos disponibles:")
+    for model in available_models:
+        st.write(f"- {model.name}")
+except Exception as e:
+    st.error(f"Error al listar modelos: {e}")
