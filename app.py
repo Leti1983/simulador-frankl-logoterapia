@@ -72,3 +72,12 @@ if prompt := st.chat_input("Escribe tu pregunta para el Dr. Frankl aquí..."):
             
         except Exception as e:
             st.error(f"Error técnico: {e}")
+
+
+# Pie de página
+st.markdown("---")
+st.markdown(
+    "<p style='text-align: center; color: gray; font-size: 14px;'>"
+    "Diseñado por Prof. Lic. María Leticia Lombardi - para ser usado exclusivamente con fines educativos.</p>",
+    unsafe_allow_html=True
+)
