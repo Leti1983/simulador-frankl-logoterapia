@@ -8,7 +8,10 @@ st.write("Bienvenido a este espacio de reflexión académica de la Diplomatura e
 
 # 2. Conexión segura a la API
 api_key = st.secrets.get("GEMINI_API_KEY", "TU_CLAVE_AQUI")
-genai.configure(api_key=api_key)
+genai.configure(
+    api_key=api_key,
+    transport='rest'
+)
 
 # 3. El "Observador" Frankliano
 frankl_prompt = """
