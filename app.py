@@ -23,35 +23,31 @@ Tus reglas:
 5. Respuestas breves de un solo párrafo con 2 o 3 líneas y al menos un emoji diferente en cada oración y que sea coherente con lo que escribas.
 """
 
-# 4. Configuración del Modelo de IA (Usando el modelo universal de tu lista)
-model = genai.GenerativeModel('gemini-1.5-flash'),
+# 4. Configuración del Modelo de IA
+model = genai.GenerativeModel(
+    'gemini-1.5-flash',
     system_instruction=frankl_prompt
 )
 
 # 5. Inicialización de la memoria del chat
-# URL de la foto de perfil de Viktor Frankl
 AVATAR_FRANKL = "https://i.imgur.com/HJo4QeX.jpeg"
+
 if "chat_session" not in st.session_state:
     st.session_state.chat_session = model.start_chat(history=[])
 
 if "messages" not in st.session_state:
-    # Mensaje de sistema oculto (instrucciones)
     st.session_state.messages = []
-    
-    # PRIMER SALUDO DEL BOT (Solo ocurre al cargar la app por primera vez)
     saludo_inicial = "Saludos, soy una IA diseñada para fines académicos, pero responderé como si fuera el Dr. Frankl. ¿En qué puedo acompañarte hoy en tu búsqueda de sentido?"
-    # El saludo inicial solo se agrega UNA VEZ al principio
     st.session_state.messages.append({"role": "assistant", "content": saludo_inicial})
 
+# Mostrar historial de mensajes
 for msg in st.session_state.messages:
-   for msg in st.session_state.messages:
     if msg["role"] == "assistant":
         with st.chat_message("assistant", avatar=AVATAR_FRANKL):
             st.markdown(msg["content"])
     else:
         with st.chat_message("user"):
             st.markdown(msg["content"])
-        st.markdown(msg["content"])
 
 # 6. Interacción con el alumno
 if prompt := st.chat_input("Escribe tu pregunta para el Dr. Frankl aquí..."):
@@ -61,19 +57,15 @@ if prompt := st.chat_input("Escribe tu pregunta para el Dr. Frankl aquí..."):
     with st.chat_message("user"):
         st.markdown(prompt)
         
-    # Respuesta del asistente con efecto "Escribiendo..."
+    # Respuesta del asistente
     with st.chat_message("assistant", avatar=AVATAR_FRANKL):
         try:
-            # Esta línea crea el efecto visual de WhatsApp
             with st.status("El Dr. Frankl está escribiendo...", expanded=False) as status:
                 response = st.session_state.chat_session.send_message(prompt)
                 status.update(label="Respuesta recibida", state="complete", expanded=False)
             
-            # Mostrar la respuesta final
             st.markdown(response.text)
             st.session_state.messages.append({"role": "assistant", "content": response.text})
             
         except Exception as e:
             st.error(f"Error técnico: {e}")
-        except Exception as e:
-            st.error(f"Límite de Google alcanzado. Detalle técnico: {e}")
